@@ -1,10 +1,13 @@
 const express = require('express')
+require('./db/mongoose')
+const testRouter = require('./routers/test')
+
 const app = express()
+const port = process.env.PORT
  
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
+app.use(express.json())
+app.use(testRouter)
  
-app.listen(3001, () => {
-  console.log('Server is up on port 3001')
+app.listen(port, () => {
+  console.log('Server is up on port ' + port)
 })
